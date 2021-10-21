@@ -2,6 +2,10 @@ from pydub import AudioSegment
 import os
 
 class AudioFile:
+    """
+    Class for working with audio: encoding, decoding
+    (Encoding and decoding works with the initially set octaves and frequency)
+    """
     def __init__(self, file_name, format):
         self.file_name = file_name
         self.format = format
