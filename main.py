@@ -9,7 +9,7 @@ token = os.getenv('TOKEN')
 
 bot = telebot.TeleBot(token)
 
-global user_send_data
+global user_send_data #Saves the command entered by the user (Encode or Decode)
 user_send_data = []
 
 @bot.message_handler(commands=['start'])
@@ -40,10 +40,10 @@ def bot_messages(message):
     for i in user_send_data:
         if i[0] == message.chat.id:
             try:
-                file_info = bot.get_file(message.voice.file_id)
+                file_info = bot.get_file(message.voice.file_id) 
             except:
                 file_info = bot.get_file(message.audio.file_id)
-            file = requests.get('https://api.telegram.org/file/bot{0}/{1}'.format(token, file_info.file_path))
+            file = requests.get('https://api.telegram.org/file/bot{0}/{1}'.format(token, file_info.file_path)) #Getting an audio file by its id
             src = file_info.file_path[:6] + 'oga' + file_info.file_path[5:]
 
             src = src.replace('music', 'voice')
@@ -54,7 +54,7 @@ def bot_messages(message):
             if src.count('.mp3'):
                 src = src.replace('.mp3', '')
             else:
-                AudioFile.decode_to_mp3_from_oga(src)
+                AudioFile.decode_to_mp3_from_oga(src) #The program can only work with mp3 files, so we translate from oga to mp3
 
             audio = AudioFile(src+'.mp3', 'mp3')
 
@@ -65,7 +65,7 @@ def bot_messages(message):
                 audio.encode_audio()
                 audio.save()
             else:
-                return False
+                return
 
             bot.send_voice(message.chat.id, voice=open(src+'.mp3', 'rb'))
 
