@@ -4,22 +4,23 @@ Telegram bot for changing the voice in a voice message or audio recording, with 
 
 ## Deploy locally:
 
-Clone the repository
+Clone the repository and go to installed folder:
 ```
 git clone https://github.com/Ryize/voiceChanger.git
+cd voiceChanger
 ```
 
-Install requirements
+Install requirements:
 ```
 pip3 install -r requirements.txt
 ```
 
-Add your bot token here in main.py
+Add your bot token here in main.py:
 ```
 token = ''
 ```
 
-Run the bot
+Run the bot:
 ```
 python3 main.py
 ```
