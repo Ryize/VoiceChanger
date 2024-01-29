@@ -83,4 +83,8 @@ def bot_messages(message):
 if __name__ == '__main__':
     if check_exist_directory() == False:
         create_directory_with_save_voice()
-    bot.infinity_polling()
+    while True:
+        try:
+            bot.infinity_polling()
+        except:
+            pass
